@@ -1,0 +1,19 @@
+version: 0.2
+ 
+phases:
+  install:
+    commands:
+      - uname -a
+      - docker --version
+  pre_build:
+    commands:
+      - docker ps -a
+      - docker images -a
+      - docker build -t my-hello-world ./docker/
+  build:
+    commands:
+      - docker run my-hello-world
+  post_build:
+    commands:
+      - docker ps -a
+      - docker images -a
